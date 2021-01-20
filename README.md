@@ -1,2 +1,3 @@
 # fantasy-x
-Dapp for fantasy football with a twist
+
+A fantasy gaming application similar to fantasy football but geared towards the e-sports scene.
