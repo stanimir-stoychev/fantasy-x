@@ -25,7 +25,7 @@ package:
 
 functions:
   first:
-    handler: http
+    handler: gcs_handler
     events:
       - http: path
   # NOTE: the following uses an "event" event (pubSub event in this case).
