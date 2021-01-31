@@ -17,6 +17,19 @@
     },
     "plugins": ["prettier", "@typescript-eslint"],
     "rules": {
-        "react/jsx-indent": [1, 4]
+        "react/jsx-indent": [1, 4],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"]
+            }
+        }
     }
 }
