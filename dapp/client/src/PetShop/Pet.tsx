@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import useSolidityContract from '../shared/hooks/useSolidityContract';
+import useSolidityContract from 'shared/hooks/useSolidityContract';
 
 type ComponentProps = {
     pet: {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
-import getWeb3 from '../../getWeb3';
-import Adoption from '../../contracts/Adoption.json';
-import SimpleStorage from '../../contracts/SimpleStorage.json';
+import getWeb3 from 'getWeb3';
+import Adoption from 'contracts/Adoption.json';
+import SimpleStorage from 'contracts/SimpleStorage.json';
 
 const CONTRACTS = { Adoption, SimpleStorage };
 
