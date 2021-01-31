@@ -7,5 +7,5 @@ A fantasy gaming application similar to fantasy football but geared towards the 
 - `yarn install --save serverless-plugin-scripts`
 
 # Test:
-curl -X POST "URL"
--H "Content-Type:application/json"  -d '{"id": "1", "data": {"base": "ETH", "quote": "USD"}}'
+`curl -X POST "URL"
+-H "Content-Type:application/json"  -d '{"id": "1", "data": {"base": "ETH", "quote": "USD"}}'`
