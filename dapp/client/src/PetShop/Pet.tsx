@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
@@ -39,6 +39,7 @@ function Pet({ pet }: ComponentProps) {
             .adopt(petId)
             .send({ from: account })
             .then(() => contract.methods.getAdopters.call())
+            .then(({ call }: any) => call())
             .then((adopters: string[]) => {
                 for (let i = 0; i < adopters.length; i += 1) {
                     if (adopters[i] !== '0x0000000000000000000000000000000000000000' && i === petId) {
@@ -48,6 +49,21 @@ function Pet({ pet }: ComponentProps) {
                 }
             });
     };
+
+    useEffect(() => {
+        if (contract?.methods?.getAdopters)
+            contract.methods.getAdopters
+                .call()
+                .call()
+                .then((adopters: string[]) => {
+                    for (let i = 0; i < adopters.length; i += 1) {
+                        if (adopters[i] !== '0x0000000000000000000000000000000000000000' && i === petId) {
+                            setAdopted(true);
+                            break;
+                        }
+                    }
+                });
+    }, [contract]);
 
     return (
         <StyledCard className="Pet">
