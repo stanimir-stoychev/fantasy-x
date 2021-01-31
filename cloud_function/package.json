@@ -10,5 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "serverless-google-cloudfunctions": "*"
+  },
+  "dependencies": {
+    "serverless-plugin-scripts": "^1.0.2"
   }
 }

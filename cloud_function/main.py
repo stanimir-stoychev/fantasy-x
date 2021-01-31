@@ -2,7 +2,7 @@ import json
 from adapter import Adapter
 
 
-def gcs_handler(request):
+def cf_handler(request):
     adapter = Adapter(request.json)
     return json.dumps(adapter.result)
 
