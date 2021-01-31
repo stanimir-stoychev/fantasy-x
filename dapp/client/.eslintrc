@@ -15,5 +15,8 @@
         "project": "./tsconfig.json",
         "sourceType": "module"
     },
-    "plugins": ["prettier", "@typescript-eslint"]
+    "plugins": ["prettier", "@typescript-eslint"],
+    "rules": {
+        "react/jsx-indent": [1, 4]
+    }
 }
