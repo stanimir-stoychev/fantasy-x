@@ -1,0 +1,12 @@
+{
+  "name": "fantasy-x",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/stanimir-stoychev/fantasy-x.git",
+  "author": "Stanimir Stoychev <xstukix@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
