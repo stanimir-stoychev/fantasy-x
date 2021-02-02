@@ -3,6 +3,7 @@ from adapter import Adapter
 
 
 def cf_handler(request):
+    print(request)
     adapter = Adapter(request.json)
     return json.dumps(adapter.result)
 
