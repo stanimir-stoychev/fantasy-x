@@ -17,6 +17,7 @@
     },
     "plugins": ["prettier", "@typescript-eslint"],
     "rules": {
+        "import/prefer-default-export": "off",
         "react/jsx-indent": [1, 4],
         "prettier/prettier": [
             "error",
