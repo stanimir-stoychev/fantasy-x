@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import faker from 'faker';
 import RAW_DATA from '../demo/raw';
 

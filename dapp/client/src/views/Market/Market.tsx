@@ -2,11 +2,10 @@ import React from 'react';
 
 import PlayerCard from 'shared/components/PlayerCard';
 
-import { ComponentProps } from './types';
 import { StyledMarket } from './styled';
 import usePlayers from './hooks/usePlayers';
 
-function Market(props: ComponentProps) {
+function Market() {
     const { data = [], isLoading } = usePlayers();
 
     console.log({ data, isLoading });

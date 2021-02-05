@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import u41231571 from './41231571';
 import u105248644 from './105248644';
 import u70388657 from './70388657';
