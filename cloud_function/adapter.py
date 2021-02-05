@@ -4,13 +4,7 @@ from bridge import Bridge
 class Adapter:
     base_url = 'https://api.opendota.com/api/players'
     from_params = ['account_id']
-    # to_params = ''
-
-    print("Stan is a fag!")
-    # base_url = 'https://min-api.cryptocompare.com/data/price'
-    # # these are all equivalent, i.e. base == quote
-    # from_params = ['base', 'from', 'coin']
-    # to_params = ['quote', 'to', 'market']
+    to_params = ['stat']
 
     def __init__(self, input):
         self.id = input.get('id', '1')
@@ -34,31 +28,18 @@ class Adapter:
             self.from_param = self.request_data.get(param)
             if self.from_param is not None:
                 break
-        # for param in self.to_params:
-        #     self.to_param = self.request_data.get(param)
-        #     if self.to_param is not None:
-        #         break
+        for param in self.to_params:
+            self.to_param = self.request_data.get(param)
+            if self.to_param is not None:
+                break
 
     def create_request(self):
         try:
-            # params = {
-            #     'account_id': self.from_param
-            #
-            #     #'fsym': self.from_param,
-            #     #'tsyms': self.to_param,
-            # }
-
-            url = f"{self.base_url}/{self.from_param['account_id']}"
-            print(url)
+            url = f"{self.base_url}/{self.from_param}"
             response = self.bridge.request(url)
-            print(response)
-            # response = self.bridge.request(self.base_url, params)
-
             data = response.json()
-            print(data)
-            self.result = data
-            # self.result = data[self.to_param]
-            # data['result'] = self.result
+            self.result = data[self.to_param]
+            data['result'] = self.result
             self.result_success(data)
         except Exception as e:
             self.result_error(e)

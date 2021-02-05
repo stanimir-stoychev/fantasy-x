@@ -10,9 +10,9 @@ def adapter_setup(test_data):
 
 
 @pytest.mark.parametrize('test_data', [
-    {'id': job_run_id, 'data': {"account_id": 70388657}},
-    {'id': job_run_id, 'data': {"account_id": 70388657}},
-    {'id': job_run_id, 'data': {"account_id": 70388657}},
+    {'id': job_run_id, 'data': {"account_id": 70388657, "stat": "leaderboard_rank"}},
+    {'id': job_run_id, 'data': {"account_id": 94054712, "stat": "solo_competitive_rank"}},
+    {'id': job_run_id, 'data': {"account_id": 70388657, "stat": "rank_tier"}},
 ])
 def test_create_request_success(test_data):
     result = adapter_setup(test_data)
@@ -20,13 +20,12 @@ def test_create_request_success(test_data):
     assert result['statusCode'] == 200
     assert result['jobRunID'] == job_run_id
     assert result['data'] is not None
-    assert type(result['result']) is float
-    assert type(result['data']['result']) is float
+    assert type(result['result']) is int
+    assert type(result['data']['result']) is int
 
 
 @pytest.mark.parametrize('test_data', [
     {'id': job_run_id, 'data': {}},
-    {'id': job_run_id, 'data': {'from': 'does_not_exist', 'to': 'USD'}},
     {},
 ])
 def test_create_request_error(test_data):
