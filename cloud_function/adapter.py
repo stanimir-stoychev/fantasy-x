@@ -2,13 +2,10 @@ from bridge import Bridge
 
 
 class Adapter:
-    # base_url = 'https://api.opendota.com/api/players'
-    # from_params = ['account_id']
-    # to_params = ''
-
-    base_url = 'https://min-api.cryptocompare.com/data/price'
-    from_params = ['base', 'from', 'coin']
-    to_params = ['quote', 'to', 'market']
+  
+    base_url = 'https://api.opendota.com/api/players'
+    from_params = ['account_id']
+    to_params = ['stat']
 
     def __init__(self, input):
         self.id = input.get('id', '1')
@@ -39,19 +36,15 @@ class Adapter:
 
     def create_request(self):
         try:
-            params = {
-                # 'account_id': self.from_param
-
-                'fsym': self.from_param,
-                'tsyms': self.to_param,
-            }
-            response = self.bridge.request(self.base_url, params)
+            url = f"{self.base_url}/{self.from_param}"
+            response = self.bridge.request(url)
             data = response.json()
             self.result = data[self.to_param]
             data['result'] = self.result
             self.result_success(data)
         except Exception as e:
             self.result_error(e)
+            raise e
         finally:
             self.bridge.close()
 
@@ -69,4 +62,5 @@ class Adapter:
             'status': 'errored',
             'error': f'There was an error: {error}',
             'statusCode': 500,
+
         }
