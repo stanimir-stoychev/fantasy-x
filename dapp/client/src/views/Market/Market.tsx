@@ -42,6 +42,7 @@ function buildPlayerHeroHistory({ stats }: Pick<Player, 'stats'>) {
 
 function buildPlayerRow(player: Player) {
     const { name, avatar, price } = player;
+    console.log({ player });
     return (
         <StyledPlayerRow className="PlayerRow" key={name}>
             <PlayerCard key={name} avatar={avatar} name={name} price={price} stats={buildPlayerStats(player)} />

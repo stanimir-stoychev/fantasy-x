@@ -72,8 +72,9 @@ const PlayerRow = styled.aside`
 `;
 
 const Market = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     .AveragedScore {
         font-size: 30px;

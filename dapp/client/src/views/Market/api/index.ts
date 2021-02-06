@@ -16,6 +16,7 @@ type Player = {
     name: string;
     price: number;
     stats: Stats;
+    rank: number;
 };
 
 const HEROES_MAP = RAW_DATA.heroes.reduce(
@@ -36,7 +37,8 @@ export default {
                         player,
                         avatar: player.profile.avatarfull,
                         name: player.profile.name,
-                        price: faker.random.number({ min: 0.0001, max: 100 }),
+                        price: ((player.solo_competitive_rank || 1) * 0.000001).toFixed(6),
+                        rank: player.solo_competitive_rank,
                         stats: player.matches.reduce((stats: Stats, matchStats: any, index: number) => {
                             const shouldAverage = index === player.matches.length - 1;
                             const { kills, deaths, assists, duration } = matchStats;
