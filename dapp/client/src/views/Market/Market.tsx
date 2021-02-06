@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
 import PlayerCard from 'shared/components/PlayerCard';
+import useSolidityContract from 'shared/hooks/useSolidityContract';
 
 import { Player } from './api';
 import { StyledHtmlTooltip, StyledMarket, StyledPlayerRow } from './styled';
@@ -29,7 +30,7 @@ function buildPlayerHeroHistory({ stats }: Pick<Player, 'stats'>) {
     return Object.keys(stats)
         .filter((statKey) => !['avgKills', 'avgAssists', 'avgDeaths'].includes(statKey))
         .map((statKey) => {
-            const { avgAssists, avgDeaths, avgGameDuration, avgKills, hero, playCount } = stats[statKey].value;
+            const { hero } = stats[statKey].value;
             const title = <>{hero.localized_name}</>;
 
             return (
@@ -40,42 +41,57 @@ function buildPlayerHeroHistory({ stats }: Pick<Player, 'stats'>) {
         });
 }
 
-function buildPlayerRow(player: Player) {
-    const { name, avatar, price } = player;
-    console.log({ player });
-    return (
-        <StyledPlayerRow className="PlayerRow" key={name}>
-            <PlayerCard key={name} avatar={avatar} name={name} price={price} stats={buildPlayerStats(player)} />
-            <div className="MarketInfo">
-                <div className="Entry" data-label="Player name">
-                    {name || 'unknown-name'}
-                </div>
-                <div className="Entry" data-label="Stats">
-                    <ul className="Stats">{buildPlayerStats(player)}</ul>
-                </div>
-                <div className="Entry" data-label="Hero history">
-                    <AvatarGroup max={5}>{buildPlayerHeroHistory(player)}</AvatarGroup>
-                </div>
-                <div className="Price">
-                    {price} ETH
-                    <Button
-                        color="secondary"
-                        type="button"
-                        onClick={() => {
-                            console.log('buy');
-                        }}
-                    >
-                        Buy
-                    </Button>
-                </div>
-            </div>
-        </StyledPlayerRow>
-    );
-}
-
 function Market() {
     const { data = [] } = usePlayers();
-    return <StyledMarket>{data.map(buildPlayerRow)}</StyledMarket>;
+    const { account, contract } = useSolidityContract('PlayerToken');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [mintedPlayers, setMintedPlayers] = useState([] as any[]);
+
+    useEffect(() => {
+        if (contract?.methods?.getPlayers) contract.methods.getPlayers.call().call().then(setMintedPlayers);
+    }, [contract]);
+
+    return (
+        <StyledMarket>
+            {data.map((player) => {
+                const { id, name, avatar, price, rank } = player;
+                const disabled = !!mintedPlayers.find((mintedPlayer) => mintedPlayer.id === `${id}`);
+                const handleBuy = () => {
+                    // contract.methods.mint(id, rank).send({ from: account, value: (rank || 1) * 1000000000000 });
+                    contract.methods.mint(id, rank).send({ from: account });
+                };
+
+                return (
+                    <StyledPlayerRow className="PlayerRow" key={name}>
+                        <PlayerCard
+                            key={name}
+                            avatar={avatar}
+                            name={name}
+                            price={price}
+                            stats={buildPlayerStats(player)}
+                        />
+                        <div className="MarketInfo">
+                            <div className="Entry" data-label="Player name">
+                                {name || 'unknown-name'}
+                            </div>
+                            <div className="Entry" data-label="Stats">
+                                <ul className="Stats">{buildPlayerStats(player)}</ul>
+                            </div>
+                            <div className="Entry" data-label="Hero history">
+                                <AvatarGroup max={5}>{buildPlayerHeroHistory(player)}</AvatarGroup>
+                            </div>
+                            <div className="Price">
+                                {price} ETH
+                                <Button color="secondary" type="button" onClick={handleBuy} disabled={disabled}>
+                                    Buy
+                                </Button>
+                            </div>
+                        </div>
+                    </StyledPlayerRow>
+                );
+            })}
+        </StyledMarket>
+    );
 }
 
 export { StyledMarket };

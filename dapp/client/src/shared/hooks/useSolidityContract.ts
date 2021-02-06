@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
 import getWeb3 from 'getWeb3';
+
 import Adoption from 'contracts/Adoption.json';
+import PlayerToken from 'contracts/PlayerToken.json';
 import SimpleStorage from 'contracts/SimpleStorage.json';
 
-const CONTRACTS = { Adoption, SimpleStorage };
+const CONTRACTS = { Adoption, PlayerToken, SimpleStorage };
 
 export default (contractKey: keyof typeof CONTRACTS) => {
     const [web3, setWeb3] = useState<Web3>();
@@ -23,7 +26,7 @@ export default (contractKey: keyof typeof CONTRACTS) => {
 
                 // Get the contract instance.
                 const networkId = await web3Instance.eth.net.getId();
-                const deployedNetwork = rawContract.networks[`${networkId}` as keyof typeof rawContract.networks];
+                const deployedNetwork: any = rawContract.networks[`${networkId}` as keyof typeof rawContract.networks];
                 const instance = new web3Instance.eth.Contract(
                     rawContract.abi as any,
                     deployedNetwork && deployedNetwork.address,

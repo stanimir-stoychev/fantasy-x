@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import faker from 'faker';
 import RAW_DATA from '../demo/raw';
 
 type Stats = Record<
@@ -12,6 +11,7 @@ type Stats = Record<
 >;
 
 type Player = {
+    id: number;
     avatar: string;
     name: string;
     price: number;
@@ -35,6 +35,7 @@ export default {
                 resolve(
                     RAW_DATA.all.map((player: any) => ({
                         player,
+                        id: player.profile.account_id,
                         avatar: player.profile.avatarfull,
                         name: player.profile.name,
                         price: ((player.solo_competitive_rank || 1) * 0.000001).toFixed(6),
