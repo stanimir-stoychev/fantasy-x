@@ -12,6 +12,7 @@
         "truffle:deploy": "yarn truffle:compile && yarn truffle:migrate"
     },
     "devDependencies": {
+        "@openzeppelin/contracts": "^3.4.0",
         "ganache-cli": "^6.12.2",
         "truffle": "^5.1.64"
     }

@@ -1,35 +1,30 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "src",
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es5",
+        "noFallthroughCasesInSwitch": true
+    },
+    "files": [
+        "@types/fonts.d.ts",
+        "@types/overrides.d.ts",
+        "@types/images.d.ts",
+        "@types/styled.d.ts",
+        "@types/web-worker.d.ts"
     ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "es5",
-    "noFallthroughCasesInSwitch": true
-  },
-  "files": [
-    "@types/fonts.d.ts",
-    "@types/overrides.d.ts",
-    "@types/images.d.ts",
-    "@types/styled.d.ts",
-    "@types/web-worker.d.ts"
-  ],
-  "include": [
-    "src"
-  ]
+    "include": ["src"]
 }
