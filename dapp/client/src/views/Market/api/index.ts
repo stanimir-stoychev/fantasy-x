@@ -26,6 +26,7 @@ const HEROES_MAP = RAW_DATA.heroes.reduce(
     {},
 );
 
+export type { Player };
 export default {
     getPlayers: () =>
         new Promise<Player[]>((resolve) => {
@@ -40,9 +41,9 @@ export default {
                             const shouldAverage = index === player.matches.length - 1;
                             const { kills, deaths, assists, duration } = matchStats;
 
-                            let avgKills = (stats.avgKills || 0) + kills;
-                            let avgDeaths = (stats.avgDeaths || 0) + deaths;
-                            let avgAssists = (stats.avgAssists || 0) + assists;
+                            let avgKills = (stats.avgKills?.value || 0) + kills;
+                            let avgDeaths = (stats.avgDeaths?.value || 0) + deaths;
+                            let avgAssists = (stats.avgAssists?.value || 0) + assists;
 
                             const heroCode = `${matchStats.hero_id}`;
                             const { [heroCode]: hero } = HEROES_MAP;
@@ -69,9 +70,9 @@ export default {
 
                             return {
                                 ...stats,
-                                avgKills: { id: 'avgKills', name: 'Average Kills', value: avgKills },
-                                avgDeaths: { id: 'avgKills', name: 'Average Deaths', value: avgDeaths },
-                                avgAssists: { id: 'avgKills', name: 'Average Assists', value: avgAssists },
+                                avgKills: { id: 'avgKills', name: 'Kills', value: avgKills },
+                                avgDeaths: { id: 'avgKills', name: 'Deaths', value: avgDeaths },
+                                avgAssists: { id: 'avgKills', name: 'Assists', value: avgAssists },
                                 [heroCode]: {
                                     id: heroCode,
                                     name: 'Player with hero',
