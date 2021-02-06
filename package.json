@@ -1,0 +1,20 @@
+{
+    "name": "fantasy-x",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/stanimir-stoychev/fantasy-x.git",
+    "author": "Stanimir Stoychev <xstukix@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "dependencies": {
+        "faker": "^5.3.1"
+    },
+    "devDependencies": {
+        "@types/faker": "^5.1.6",
+        "@typescript-eslint/eslint-plugin": "^4.14.2",
+        "@typescript-eslint/parser": "^4.14.2",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "prettier": "^2.2.1"
+    }
+}

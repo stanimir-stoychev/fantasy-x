@@ -1,0 +1,19 @@
+{
+    "name": "fantasy-x-dapp",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "client:start": "cd ./client && yarn start",
+        "ganache:start": "ganache-cli --deterministic",
+        "truffle:compile": "truffle compile",
+        "truffle:migrate": "truffle migrate",
+        "truffle:test": "truffle test",
+        "truffle:deploy": "yarn truffle:compile && yarn truffle:migrate"
+    },
+    "devDependencies": {
+        "@openzeppelin/contracts": "^3.4.0",
+        "ganache-cli": "^6.12.2",
+        "truffle": "^5.1.64"
+    }
+}

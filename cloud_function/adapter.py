@@ -2,6 +2,7 @@ from bridge import Bridge
 
 
 class Adapter:
+  
     base_url = 'https://api.opendota.com/api/players'
     from_params = ['account_id']
     to_params = ['stat']
@@ -61,4 +62,5 @@ class Adapter:
             'status': 'errored',
             'error': f'There was an error: {error}',
             'statusCode': 500,
+
         }
