@@ -4,6 +4,7 @@ A fantasy gaming application similar to fantasy football but geared towards the 
 
 # Deploy External Adapter:
 - Install gcloud
+- `yarn install serverless`
 - `yarn install --save serverless-plugin-scripts`
 
 # Test:
